@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Carta de Aniversário</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    .envelope {
+      position: relative;
+      width: 700px;
+      height: 350px;
+      background: #ff6b81;
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.25);
+      transform-style: preserve-3d;
+    }
+
+    /* Aba do envelope */
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: #ff4757;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top;
+      transition: transform 1s ease;
+      z-index: 2;
+    }
+
+    .letter {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(100%);
+      width: 90%;
+      height: 90%;
+      background: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      text-align: center;
+      transition: transform 1s ease;
+      z-index: 1;
+    }
+
+    .letter h1 {
+      color: #ff6b81;
+      margin-bottom: 10px;
+    }
+
+    .letter p {
+      color: #333;
+      font-size: 18px;
+    }
+
+    /* Estado aberto */
+    .envelope.open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .envelope.open .letter {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* Corações animados */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 4s infinite ease-in;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-300px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Música -->
+  <audio id="bg-music" loop>
+    <source src="https://docs.google.com/uc?export=download&id=1_Kk12FScdJEXR0DRZZMBg8edz7trhrhG" type="audio/mp3">
+  </audio>
+
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="letter">
+      <h1>🎉 Feliz Aniversário Dona GiGi! 🎂</h1>
+      <p> Giovanna,continue sendo essa pessoa incrivel que eu conheci, cada momento ao seu lado é único e faz meu coração sorrir. Que esta carta seja um pequeno abraço, cheio de carinho e boas lembranças, para te lembrar que você é muito especial e sempre terá um pedacinho do meu coração.
+Com todo meu carinho.                 </p>
+      <p> ASS; Sergio💖<p>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const music = document.getElementById('bg-music');
+
+    envelope.addEventListener('click', () => {
+      envelope.classList.toggle('open');
+      music.play();
+
+      // Corações surgindo
+      for (let i = 0; i < 10; i++) {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.bottom = "0px";
+        heart.style.background = ["#ff6b81", "#ff4757", "#ff7f50"][Math.floor(Math.random()*3)];
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 4000);
+      }
+    });
+  </script>
+</body>
+</html>
+<!-- partial -->
+  
+</body>
+</html>
